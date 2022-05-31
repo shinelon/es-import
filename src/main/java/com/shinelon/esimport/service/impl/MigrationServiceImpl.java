@@ -22,6 +22,11 @@ public class MigrationServiceImpl implements IMigrationService {
     private ICompanyIndexOptService companyIndexOptService;
 
     @Override
+    public void checkFile(){
+        csvService.checkFile();
+    }
+
+    @Override
     public void modeCreate(){
         companyIndexOptService.createCompanyIndex();
     }

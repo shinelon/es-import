@@ -35,6 +35,7 @@ public class EsImportApplication {
         application.setDefaultProperties(defaultProperties);
         ConfigurableApplicationContext applicationContext = application.run(args);
         IMigrationService migrationService = applicationContext.getBean(IMigrationService.class);
+        migrationService.checkFile();
         if (StringUtils.equals("reset", m)) {
             migrationService.modeReset();
         }else {

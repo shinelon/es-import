@@ -1,7 +1,6 @@
 package com.shinelon.esimport.service.impl;
 
 import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.LineHandler;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
@@ -16,8 +15,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.RandomAccessFile;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -37,7 +34,14 @@ public class CsvServiceImpl implements ICsvService {
     @Autowired
     private ICompanyIndexOptService companyIndexOptService;
 
-
+    @Override
+    public void checkFile(){
+        log.info("csv.path:{}",csvPath);
+        File file = FileUtil.file(csvPath);
+        if(!file.exists()){
+            throw new RuntimeException("file is not exists");
+        }
+    }
 
     @Override
     public void readFile() {
@@ -76,6 +80,7 @@ public class CsvServiceImpl implements ICsvService {
                     }
 
                 })
+                .charset(Charset.forName("UTF-8"))
                 .sheet()
                 .doRead();
         long endTime = System.currentTimeMillis();

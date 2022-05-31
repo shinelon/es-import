@@ -9,6 +9,11 @@ package com.shinelon.esimport.service;
 public interface IMigrationService {
 
     /**
+     *checkFile
+     */
+    void checkFile();
+
+    /**
      * modeCreate
      */
     void modeCreate();

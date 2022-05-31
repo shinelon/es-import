@@ -7,6 +7,10 @@ package com.shinelon.esimport.service;
 public interface ICsvService {
 
 
+    /**
+     *checkFile
+     */
+    void checkFile();
 
     /**
      * readFile
